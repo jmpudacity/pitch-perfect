@@ -21,4 +21,11 @@ class RecordedAudio: NSObject {
         filePathUrl = nil
         title = nil
     }
+    
+    init(filePathUrlIn: NSURL, titleIn: String) {
+        
+        filePathUrl = filePathUrlIn
+        title = titleIn
+    }
+
 }

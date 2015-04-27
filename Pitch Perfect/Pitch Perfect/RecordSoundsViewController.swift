@@ -32,6 +32,8 @@ class RecordSoundsViewController:UIViewController, AVAudioRecorderDelegate {
     }
 
     override func viewWillAppear(animated: Bool) {
+        super.viewWillAppear(animated)
+
         stopButton.hidden = true
         recordButton.enabled = true
         tapToRecord.hidden = false
@@ -78,9 +80,8 @@ class RecordSoundsViewController:UIViewController, AVAudioRecorderDelegate {
             
             //1. save the recorded audio
 
-            recordedAudio = RecordedAudio ()
-            recordedAudio.filePathUrl = recorder.url
-            recordedAudio.title = recorder.url.lastPathComponent
+            //use constructor
+            recordedAudio = RecordedAudio (filePathUrlIn: recorder.url, titleIn: recorder.url.lastPathComponent!)
 
             //2. perform segue
 
@@ -109,6 +110,8 @@ class RecordSoundsViewController:UIViewController, AVAudioRecorderDelegate {
     }
     
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
+        super.prepareForSegue(segue, sender: sender)
+        
         if(segue.identifier == "stopRecording"){
             
             let playSoundsVC:PlaySoundsViewController = segue.destinationViewController as PlaySoundsViewController
